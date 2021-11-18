@@ -1,0 +1,14 @@
+.grid{
+  display: grid;
+  list-style: none;
+  padding: 0px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.grid li {
+  background-color: rgb(255, 237, 215);
+  padding: 6px;
+  box-shadow: 3px 7px 5px 0px rgba(237,225,237,1);
+  border-radius: 5px
+}
