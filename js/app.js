@@ -3,6 +3,7 @@ const API_URL = "https://rickandmortyapi.com/api/";
 const app = new Vue({
   el: '#app',
   data: {
+    loading: true,
     name: '',
     age: '',
     barcode: '',
@@ -16,6 +17,7 @@ const app = new Vue({
   mounted: function () {
     axios.get(API_URL + "character/1,4,5,78,124")
       .then(response => {
+        this.loading = false;
         this.persons = response.data;
       }).catch(error => {
         console.log(error);
@@ -39,6 +41,7 @@ const app = new Vue({
     },
     handleSubmit: function () { 
       console.log("Data", this.name, this.age, this.barcode);
+      alert(`${this.name}, ${this.episodeSelected}, ${this.age}, ${this.barcode}`);
     }
   },
   computed: {
