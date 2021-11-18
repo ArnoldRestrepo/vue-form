@@ -26,9 +26,17 @@
       </div>
       <div class="mb-3">
         <label for="barcode">Código de Barras:</label>
-        <input id="barcode" v-model="barcode" v-on:blur="onChangeBarcode" type="number" placeholder="Write your barcode" class="form-control" required/>
+        <input id="barcode" v-model="barcode" v-on:blur="onChangeBarcode" type="number" placeholder="Write your barcode" class="form-control mb-2"/>
+        <button type="button" v-on:click="addBarcode" class="btn btn-primary btn-sm">Añadir Código de Barras</button>
+        <ol>
+            <li v-for="(code, index) in barcodeList">
+              {{ code }}
+              <button type="button" v-on:click="selectCode(code)" class="btn btn-success btn-sm">Seleccionar</button>
+              <button @click="removeCode(index)">Delete</button>
+            </li>
+        </ol>
       </div>
-      <div class="mb-3">
+      <!-- <div class="mb-3">
          <h4>Episodes</h4>
         <label for="search">Search Episode</label>
         <input type="text" name="search" id="search" v-model="search" placeholder="Buscar Episodio" class="form-control">
@@ -52,7 +60,7 @@
             </div>
           </li>
        </ul>
-      </div>
+      </div> -->
       <button type="submit" v-on:submit.prevent="handleSubmit" class="btn btn-primary">
         Enviar Formulario
       </button>  

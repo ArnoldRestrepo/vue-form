@@ -9,21 +9,15 @@ const app = new Vue({
     barcode: '',
     search: '',
     message: "Bar Code App",
-    barcodeList: ["1234", "5678", "9012", "3456", "7890"],
-    persons: [],
+    barcodeList: [],
+    barcodeSelected: "",
     episodes: [],
     episodeSelected: "",
   },
   mounted: function () {
-    axios.get(API_URL + "character/1,4,5,78,124")
-      .then(response => {
-        this.loading = false;
-        this.persons = response.data;
-      }).catch(error => {
-        console.log(error);
-      });
     axios.get(API_URL + "episode")
       .then(response => {
+        this.loading = false;
         this.episodes = response.data.results;
       }).catch(error => {
         console.log(error);
@@ -33,15 +27,19 @@ const app = new Vue({
     onChangeBarcode: function (event) { 
       console.log(event.target.value)
     },
-    searchBarcode: function () { 
-      console.log(this.barcode)
-      this.barcodeList.push(...this.barcode)
-      console.log(validateBarcode)
+    addBarcode: function () { 
+      this.barcodeList.push(this.barcode)
       this.barcode = ''
     },
+    selectCode: function (code) {
+      this.barcodeSelected = code
+    },
+    removeCode: function (index) {
+      this.barcodeList.splice(index, 1)
+    },
     handleSubmit: function () { 
-      console.log("Data", this.name, this.age, this.barcode);
-      alert(`${this.name}, ${this.episodeSelected}, ${this.age}, ${this.barcode}`);
+      console.log("Data", this.name, this.age,this.barcodeSelected);
+      alert(`${this.name}, ${this.barcodeSelected}, ${this.age}, ${this.barcode}`);
     }
   },
   computed: {
